@@ -1,12 +1,10 @@
-from urlparse import urljoin
-
-from album import as_album, set_album, get_album
-from artist import as_artist, set_artist, get_artist
+from album import get_album, set_album
+from artist import get_artist, set_artist
 from log import PlexLog
 from movie import get_movie, set_movie
 from show import get_episode, get_show, set_episode, set_episode_cover, \
     set_show
-from utils import convert_date, create_id, request_json, update_season_summary
+from utils import convert_date, create_id, update_season_summary
 
 version = "1.0.1"
 
