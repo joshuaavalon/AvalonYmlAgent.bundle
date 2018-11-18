@@ -59,7 +59,7 @@ class AvalonYmlTvAgent(Agent.TV_Shows):
         season_summary = show.get("season_summary", {})
         for season in media.seasons:
             season_id = media.seasons[season].id
-            summary = season_summary.get(season)
+            summary = season_summary.get(int(season))
             if summary is not None:
                 update_season_summary(season_id, summary)
             for episode in media.seasons[season].episodes:
