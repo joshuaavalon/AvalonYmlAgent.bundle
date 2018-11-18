@@ -1,5 +1,6 @@
 from base64 import b64encode
 from datetime import datetime
+from urllib import quote
 
 import requests
 from log import PlexLog
@@ -51,7 +52,7 @@ def set_metadata_actors(metadata, actors):
         role = metadata.roles.new()
         role.name = actor.get("name")
         role.role = actor.get("role")
-        role.photo = actor.get("photo")
+        role.photo = quote(actor.get("photo").encode("utf-8"), safe="/:?=&%")
 
 
 def convert_date(date_str):
