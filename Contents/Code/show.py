@@ -25,10 +25,10 @@ def get_episode(media, season, episode):
     path = get_show_file(media)
     season_dir = dirname(path)
     name = guess_name(path)
-    file = episode_file(name, season, episode, "json")
+    file = episode_file(name, season, episode, "yml")
     file_path = join(season_dir, file)
     if not exists(file_path):
-        PlexLog.error("No JSON for %s" % file_path)
+        PlexLog.error("No YAML for %s" % file_path)
         return None
     string = Core.storage.load(file_path)
     return yaml.safe_load(string)
