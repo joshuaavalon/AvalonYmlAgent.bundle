@@ -3,6 +3,7 @@ import re
 from os.path import basename, dirname, exists, join, splitext
 from urllib import unquote
 
+import yaml
 from utils import convert_date, first_or, join_list_or, set_metadata_actors, \
     set_metadata_list, set_metadata_list_name, update_show
 
@@ -17,7 +18,7 @@ def get_show(media):
     if not exists(file_path):
         return None
     string = Core.storage.load(file_path)
-    return YAML.ObjectFromString(string)
+    return yaml.safe_load(string)
 
 
 def get_episode(media, season, episode):
@@ -30,7 +31,7 @@ def get_episode(media, season, episode):
         PlexLog.error("No JSON for %s" % file_path)
         return None
     string = Core.storage.load(file_path)
-    return YAML.ObjectFromString(string)
+    return yaml.safe_load(string)
 
 
 def set_show(metadata, media, show):

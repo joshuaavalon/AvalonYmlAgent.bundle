@@ -1,7 +1,8 @@
 import hashlib
-from os.path import basename, dirname, exists, join
+from os.path import dirname, exists, join
 from urllib import unquote
 
+import yaml
 from utils import set_metadata_list
 
 
@@ -11,7 +12,7 @@ def get_artist(media):
     artist_dir = dirname(album_dir)
     file_path = join(artist_dir, "artist.yml")
     string = Core.storage.load(file_path)
-    return YAML.ObjectFromString(string)
+    return yaml.safe_load(string)
 
 
 def set_artist(metadata, media, artist):

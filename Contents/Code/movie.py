@@ -1,6 +1,7 @@
 from os.path import dirname, join
 from urllib import unquote
 
+import yaml
 from utils import convert_date, first_or, set_metadata_actors, \
     set_metadata_list, set_metadata_list_name
 
@@ -10,7 +11,7 @@ def get_movie(media):
     movie_dir = dirname(path)
     file_path = join(movie_dir, "movie.yml")
     string = Core.storage.load(file_path)
-    return YAML.ObjectFromString(string)
+    return yaml.safe_load(string)
 
 
 def set_movie(metadata, movie):

@@ -1,7 +1,8 @@
 import hashlib
-from os.path import basename, dirname, exists, join
+from os.path import dirname, exists, join
 from urllib import unquote
 
+import yaml
 from log import PlexLog
 from mutagen import File
 from utils import convert_date, set_metadata_list, update_album, update_track
@@ -12,7 +13,7 @@ def get_album(media):
     album_dir = dirname(path)
     file_path = join(album_dir, "album.yml")
     string = Core.storage.load(file_path)
-    return YAML.ObjectFromString(string)
+    return yaml.safe_load(string)
 
 
 def set_album(metadata, media, album):
