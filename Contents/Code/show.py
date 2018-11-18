@@ -22,7 +22,7 @@ def get_show(media):
 
 
 def get_episode(media, season, episode):
-    path = get_show_file(media)
+    path = get_episode_file(media, season, episode)
     season_dir = dirname(path)
     name = guess_name(path)
     file = episode_file(name, season, episode, "yml")
@@ -60,6 +60,13 @@ def get_show_file(media):
             e = media.seasons[season].episodes[episode]
             return e.items[0].parts[0].file
     return None
+
+
+def get_episode_file(media, season, episode):
+    if hasattr(media, "filename") and media.filename is not None:
+        return unquote(media.filename).decode("utf8")
+    e = media.seasons[season].episodes[episode]
+    return e.items[0].parts[0].file
 
 
 def set_episode(metadata, episode):
