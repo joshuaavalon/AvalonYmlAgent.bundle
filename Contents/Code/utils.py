@@ -58,6 +58,8 @@ def set_metadata_actors(metadata, actors):
 def convert_date(date_str):
     if date_str is None:
         return None
+    if isinstance(date_str, date):
+        return date_str
     try:
         date = datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError:
